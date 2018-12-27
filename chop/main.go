@@ -10,10 +10,6 @@ func main() {
 
 // Chop : finds the position of value in a sorted array of values
 func Chop(value int, numbers []int) int {
-	if len(numbers) == 0 {
-		return -1
-	}
-
 	leftSide := 0
 	rightSide := len(numbers) - 1
 
