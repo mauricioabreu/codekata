@@ -1,11 +1,28 @@
-package chop
+package main
 
 import (
+	"fmt"
 	"math"
+	"os"
+	"strconv"
+	"strings"
 )
 
 func main() {
+	if len(os.Args) != 3 {
+		fmt.Println("You must pass value and numbers")
+		os.Exit(1)
+	}
+	stringNumbers := strings.Split(os.Args[2], ",")
+	numbers := make([]int, len(stringNumbers))
 
+	for i, n := range stringNumbers {
+		nInt, _ := strconv.Atoi(n)
+		numbers[i] = nInt
+	}
+
+	value, _ := strconv.Atoi(os.Args[1])
+	fmt.Printf("Binary chop: value %d in %v numbers: %d\n", value, numbers, Chop(value, numbers))
 }
 
 // Chop : finds the position of value in a sorted array of values

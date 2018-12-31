@@ -1,4 +1,4 @@
-package chop
+package main
 
 import "testing"
 
