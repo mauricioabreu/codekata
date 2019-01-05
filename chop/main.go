@@ -43,3 +43,22 @@ func Chop(value int, numbers []int) int {
 
 	return -1
 }
+
+// RecursiveChop : finds the position of value in a sorted array of values (recursively)
+func RecursiveChop(value int, numbers []int) int {
+	return chop(value, numbers, 0, len(numbers)-1)
+}
+
+func chop(value int, numbers []int, leftSide int, rightSide int) int {
+	middle := int(math.Floor(float64((leftSide + rightSide) / 2)))
+	if leftSide <= rightSide {
+		if numbers[middle] > value {
+			return chop(value, numbers, leftSide, middle-1)
+		} else if numbers[middle] < value {
+			return chop(value, numbers, middle+1, rightSide)
+		} else {
+			return middle
+		}
+	}
+	return -1
+}

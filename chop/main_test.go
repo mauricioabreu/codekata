@@ -30,11 +30,20 @@ var searches = []struct {
 	{8, []int{1, 3, 5, 7}, -1},
 }
 
-func TestMain(t *testing.T) {
+func TesChop(t *testing.T) {
 	for _, s := range searches {
 		result := Chop(s.value, s.numbers)
 		if result != s.result {
 			t.Errorf("Chop(%d, %v): expected %d, got %d", s.value, s.numbers, s.result, result)
+		}
+	}
+}
+
+func TestRecursiveChop(t *testing.T) {
+	for _, s := range searches {
+		result := RecursiveChop(s.value, s.numbers)
+		if result != s.result {
+			t.Errorf("RecursiveChop(%d, %v): expected %d, got %d", s.value, s.numbers, s.result, result)
 		}
 	}
 }
