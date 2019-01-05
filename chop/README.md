@@ -30,3 +30,14 @@ Tha being said, our new search will have less possibilities: `array: [38, 48, 89
 And so on, until we find the position of our value.
 
 This is how a `simple` binary search works. I don't know efficient this solution is. Next approaches will focus on different strategies.
+
+## 2nd approach
+
+I know a bit of Elixir programming language. This approach uses the functional paradigm.
+The ideia is to use a lot of the Elixir/functional programming features. I could have done it using
+the `cond` statement (similar to `if/else`) but I did not feel I would add something new to the problem resolution so I decided to use the `guard` clauses (`when`).
+
+## 3rd approach
+
+Back to golang, the third apporach uses recursion. It works by having all the logic in a single function,
+calling it `recursively` (the function calling itself) until it finds the value and return.
