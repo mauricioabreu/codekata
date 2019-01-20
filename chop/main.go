@@ -79,7 +79,10 @@ func ChopInRotatedArray(value int, numbers []int) int {
 	} else {
 		index = Chop(value, numbers[pivot+1:len(numbers)])
 	}
-	return index + len(numbers[0:pivot+1])
+	if index >= 0 {
+		return index + len(numbers[0:pivot+1])
+	}
+	return -1
 }
 
 func FindPivot(numbers []int) int {
@@ -92,6 +95,9 @@ func findPivot(numbers []int, leftSide int, rightSide int) int {
 	// We don't have a pivot
 	if rightSide < leftSide {
 		return -1
+	}
+	if rightSide == leftSide {
+		return leftSide
 	}
 
 	middle := int(math.Floor(float64((leftSide + rightSide) / 2)))

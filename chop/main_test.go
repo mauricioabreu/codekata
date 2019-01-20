@@ -2,7 +2,7 @@ package main
 
 import "testing"
 
-var searches = []struct {
+var simpleSearches = []struct {
 	value   int   // value we are looking for
 	numbers []int // array of numbers to look up
 	result  int
@@ -30,8 +30,21 @@ var searches = []struct {
 	{8, []int{1, 3, 5, 7}, -1},
 }
 
+var rotatedSearches = []struct {
+	value   int   // value we are looking for
+	numbers []int // array of numbers to look up
+	result  int
+}{
+	{1, []int{3, 4, 5, 1, 2}, 3},
+	{3, []int{5, 6, 7, 8, 9, 10, 1, 2, 3}, 8},
+	{30, []int{5, 6, 7, 8, 9, 10, 1, 2, 3}, -1},
+	{10, []int{30, 40, 50, 10, 20}, 3},
+	// fail when using a sorted array
+	{1, []int{1, 3, 5}, -1},
+}
+
 func TesChop(t *testing.T) {
-	for _, s := range searches {
+	for _, s := range simpleSearches {
 		result := Chop(s.value, s.numbers)
 		if result != s.result {
 			t.Errorf("Chop(%d, %v): expected %d, got %d", s.value, s.numbers, s.result, result)
@@ -40,7 +53,7 @@ func TesChop(t *testing.T) {
 }
 
 func TestRecursiveChop(t *testing.T) {
-	for _, s := range searches {
+	for _, s := range simpleSearches {
 		result := RecursiveChop(s.value, s.numbers)
 		if result != s.result {
 			t.Errorf("RecursiveChop(%d, %v): expected %d, got %d", s.value, s.numbers, s.result, result)
@@ -49,10 +62,11 @@ func TestRecursiveChop(t *testing.T) {
 }
 
 func TestChopInRotatedArray(t *testing.T) {
-	values := []int{3, 4, 5, 1, 2}
-	result := ChopInRotatedArray(1, values)
-	if result != 3 {
-		t.Errorf("ChopInRotatedArray(%d, %v): expected %d, got %d", 1, values, 3, result)
+	for _, s := range rotatedSearches {
+		result := ChopInRotatedArray(s.value, s.numbers)
+		if result != s.result {
+			t.Errorf("ChopInRotatedArray(%d, %v): expected %d, got %d", s.value, s.numbers, s.result, result)
+		}
 	}
 }
 
