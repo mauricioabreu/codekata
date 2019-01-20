@@ -47,3 +47,19 @@ func TestRecursiveChop(t *testing.T) {
 		}
 	}
 }
+
+func TestChopInRotatedArray(t *testing.T) {
+	values := []int{3, 4, 5, 1, 2}
+	result := ChopInRotatedArray(1, values)
+	if result != 3 {
+		t.Errorf("ChopInRotatedArray(%d, %v): expected %d, got %d", 1, values, 3, result)
+	}
+}
+
+func TestFindPivot(t *testing.T) {
+	values := []int{3, 4, 5, 1, 2}
+	result := FindPivot(values)
+	if result != 2 {
+		t.Errorf("FindPivot(%v): expected %d, got %d", values, 2, result)
+	}
+}
